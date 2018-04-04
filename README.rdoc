@@ -1,3 +1,0 @@
-= auto_updating_relative_dates
-
-Description goes here
