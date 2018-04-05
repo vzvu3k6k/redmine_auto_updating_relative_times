@@ -1,4 +1,4 @@
-module AutoUpdadingRelativeDates
+module AutoUpdadingRelativeTimes
   module ApplicationHelperPatch
     def time_tag(time)
       text = distance_of_time_in_words(Time.zone.now, time)
@@ -13,14 +13,14 @@ module AutoUpdadingRelativeDates
     end
 
     def append_timeago_javascripts(tag)
-      return tag if defined?(@auto_updating_relative_dates_js)
-      @auto_updating_relative_dates_js = true
+      return tag if defined?(@auto_updating_relative_times_js)
+      @auto_updating_relative_times_js = true
       [
         'vendor/jquery-timeago/jquery.timeago.js',
         "vendor/jquery-timeago/locales/jquery.timeago.#{current_language}.js",
         'timeago.js'
       ].each do |path|
-        tag << javascript_include_tag(path, plugin: :auto_updating_relative_dates)
+        tag << javascript_include_tag(path, plugin: :auto_updating_relative_times)
       end
       tag
     end
