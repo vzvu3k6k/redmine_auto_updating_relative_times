@@ -2,9 +2,7 @@ require_dependency 'auto_updating_relative_dates/application_helper_patch'
 
 Redmine::Plugin.register :auto_updating_relative_dates do
   name 'Auto Updating Relative Dates plugin'
-  author 'Author name'
-  description 'This is a plugin for Redmine'
+  description 'Automatically updates relative timestamps using rmm5t/jquery-timeago'
   version '0.0.1'
-  url 'http://example.com/path/to/plugin'
-  author_url 'http://example.com/about'
+  url 'https://github.com/vzvu3k6k/redmine_auto_updating_relative_dates'
 end
