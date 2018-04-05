@@ -1,3 +1,5 @@
+require_dependency 'auto_updating_relative_dates/application_helper_patch'
+
 Redmine::Plugin.register :auto_updating_relative_dates do
   name 'Auto Updating Relative Dates plugin'
   author 'Author name'
