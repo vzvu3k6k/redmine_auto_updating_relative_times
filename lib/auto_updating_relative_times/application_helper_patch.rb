@@ -3,11 +3,9 @@ require_dependency 'auto_updating_relative_times/helper_utils'
 module AutoUpdadingRelativeTimes
   module ApplicationHelperPatch
     def time_tag(time)
-      timeago_locale_path = AutoUpdadingRelativeTimes::HelperUtils.find_timeago_locale(current_language)
-      return super if timeago_locale_path.blank?
-
+      return super if AutoUpdadingRelativeTimes::HelperUtils.supports_locale?(current_language)
       content = time_tag_content(time, @project)
-      js_tag = timeago_javascripts(timeago_locale_path)
+      js_tag = timeago_javascripts
       content.concat(js_tag)
     end
 
@@ -21,14 +19,14 @@ module AutoUpdadingRelativeTimes
       end
     end
 
-    def timeago_javascripts(timeago_locale_path)
+    def timeago_javascripts
       tag = ActiveSupport::SafeBuffer.new
       return tag if defined?(@auto_updating_relative_times_js)
       @auto_updating_relative_times_js = true
 
       [
         'vendor/jquery-timeago/jquery.timeago.js',
-        timeago_locale_path,
+        "vendor/jquery-timeago/locales/jquery.timeago.#{current_language}.js",
         'timeago.js'
       ].each { |path| tag << javascript_include_tag(path, plugin: :auto_updating_relative_times) }
       tag
