@@ -4,9 +4,7 @@ module AutoUpdadingRelativeTimes
   module ApplicationHelperPatch
     def time_tag(time)
       return super if AutoUpdadingRelativeTimes::HelperUtils.supports_locale?(current_language)
-      content = time_tag_content(time, @project)
-      js_tag = timeago_javascripts
-      content.concat(js_tag)
+      time_tag_content(time, @project).concat(timeago_javascripts)
     end
 
     def time_tag_content(time, project = nil)
@@ -20,9 +18,8 @@ module AutoUpdadingRelativeTimes
     end
 
     def timeago_javascripts
-      tag = ActiveSupport::SafeBuffer.new
-      return tag if defined?(@auto_updating_relative_times_js)
-      @auto_updating_relative_times_js = true
+      return if defined?(@auto_updating_relative_times_js_rendered)
+      @auto_updating_relative_times_js_rendered = true
 
       [
         'vendor/jquery-timeago/jquery.timeago.js',
