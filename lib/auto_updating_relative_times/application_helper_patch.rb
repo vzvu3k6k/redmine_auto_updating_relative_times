@@ -28,8 +28,9 @@ module AutoUpdadingRelativeTimes
         'vendor/jquery-timeago/jquery.timeago.js',
         "vendor/jquery-timeago/locales/jquery.timeago.#{current_language}.js",
         'timeago.js'
-      ].each { |path| tag << javascript_include_tag(path, plugin: :auto_updating_relative_times) }
-      tag
+      ].reduce(ActiveSupport::SafeBuffer.new) { |tag, path|
+        tag << javascript_include_tag(path, plugin: :auto_updating_relative_times)
+      }
     end
   end
 
