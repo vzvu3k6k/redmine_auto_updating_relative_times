@@ -15,3 +15,7 @@ jquery-timeago is not included. Run `bundle install && bundle exec rake install_
 ## Related plugins
 
 - https://github.com/suer/redmine_absolute_dates
+
+## LICENSE
+
+See COPYING.
