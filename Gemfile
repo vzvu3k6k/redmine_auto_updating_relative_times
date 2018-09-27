@@ -6,6 +6,5 @@ group :development do
 end
 
 group :release do
-  gem 'mime-types'
   gem 'octokit'
 end

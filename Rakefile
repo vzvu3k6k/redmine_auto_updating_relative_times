@@ -27,5 +27,5 @@ task :release_to_github do
 
   client = Octokit::Client.new(access_token: ENV['GITHUB_TOKEN'])
   release = client.create_release(repo, tag)
-  client.upload_asset(release[:url], release_file_path)
+  client.upload_asset(release[:url], release_file_path, content_type: 'application/gzip')
 end
