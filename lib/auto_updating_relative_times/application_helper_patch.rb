@@ -10,10 +10,10 @@ module AutoUpdadingRelativeTimes
     def time_tag_content(time, project = nil)
       text = distance_of_time_in_words(Time.zone.now, time)
       if project
-        content = content_tag('time', text, datetime: format_time(time), class: 'timeago')
+        content = content_tag('time', text, datetime: time.iso8601, class: 'timeago')
         link_to(content, project_activity_path(project, from: User.current.time_to_date(time)), title: format_time(time))
       else
-        content_tag('abbr', text, title: format_time(time), class: 'timeago')
+        content_tag('abbr', text, title: time.iso8601, class: 'timeago')
       end
     end
 
